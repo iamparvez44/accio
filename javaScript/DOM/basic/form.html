@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basics of forms</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+        }
+
+        form label, input{
+            /* width: 30%; */
+            
+        } 
+       
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            gap: 10px;
+            border: 2px solid rgb(42, 31, 31);
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <form>
+        
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Enter your Name">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="enter your email">
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="enter your password" id="password">
+
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" placeholder="confirm password" id="confirmPassword">
+
+    </form>
+
+</body>
+</html>

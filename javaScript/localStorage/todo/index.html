@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do App</title>
+</head>
+<body>
+
+    <h1>To Do App</h1>
+    <form >
+
+        <input type="text" placeholder="Enter To do">
+
+        <button>Add todo</button>
+
+    </form>
+
+    <ol>
+
+    </ol>
+
+
+    <script>
+        let form = document.querySelector("form");
+        let input = document.querySelector("input");
+        let ol = document.querySelector("ol");
+        let dataArr = [];
+
+        let useData = 
+
+        form.addEventListener("submit", (e)=>{
+            e.preventDefault();
+
+            let value = input.value;
+            let li = document.createElement("li");
+            li.innerText = value;
+            dataArr.push(input.value);
+            let jsonData = JSON.stringify(dataArr);
+            localStorage.setItem("task", jsonData);
+            
+            ol.append(li);
+            input.value = "";
+
+
+
+        })
+     </script>
+
+</body>
+</html>

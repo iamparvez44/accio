@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" placeholder="Enter Something..." />
+
+    <p id="lettersWithSpace">0</p>
+    <p id="lettersWithoutSpace">0</p>
+    <p id="words">0</p>
+
+    <script>
+      let input_box = document.querySelector("input");
+      let paras = document.querySelectorAll("p")
+
+      input_box.addEventListener("input", display);
+
+      let lettersWithSpace = 0;
+      let lettersWithoutSpace = 0;
+      let wordCount = 0
+      function display(e) {
+        let element = e.target; //
+        let value = element.value; // "Ramesh is dancing on the flooor"
+
+        let lettersWithSpace = value.length;
+        paras[0].innerText = lettersWithSpace
+        // console.log("lettersWithSpace", lettersWithSpace);
+
+        // for(let t of value){
+        //     if(t!=" "){
+        //         lettersWithoutSpace++
+        //     }
+        // }
+        let letterwithoutspace = value.split(" ").join("").length;
+                paras[1].innerText = letterwithoutspace
+
+        // console.log("letterwithoutspace", letterwithoutspace);
+                        paras[2].innerText = countWords(value)
+ 
+      }
+
+      function countWords(str) {
+        // Ram is dancing
+        str = str + " ";
+
+        let word = "";
+        let count = 0;
+        for (let t of str) {
+          if (t != " ") {
+            word = word + t; // Ram
+          } else if (word != "") {
+            count++;
+            word = "";
+          }
+        }
+
+        return count;
+      }
+    </script>
+  </body>
+</html>

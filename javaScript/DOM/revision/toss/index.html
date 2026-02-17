@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toss</title>
+  </head>
+  <body>
+    <span>Person</span> <span id="person-score">0</span>
+    <br />
+    <span>Computer</span> <span id="computer-score">0</span>
+    <br />
+    <button id="head">Head</button>
+    <button id="teil">Teil</button>
+
+    <script>
+      let personScore = document.querySelector("#person-score");
+      let computerScore = document.querySelector("#computer-score");
+      let head = document.querySelector("#head");
+      let teil = document.querySelector("#teil");
+
+      let person = 0;
+      let computer = 0;
+
+      head.addEventListener("click", () => play("Head"));
+      teil.addEventListener("click", () => play("Teil"));
+
+      function play(userChoice) {
+        let result = toss();
+
+        if (
+          (result === 1 && userChoice === "Head") ||
+          (result === 2 && userChoice === "Tail")
+        ) {
+          person++;
+          personScore.innerText = person;
+          console.log("User Win");
+        } else {
+          computer++;
+          computerScore.innerText = computer;
+          console.log("Computer Win");
+        }
+      }
+
+      function toss() {
+        return Math.floor(Math.random() * 2) + 1;
+      }
+
+      // let personScore = document.querySelector("#person-score");
+      // let computerScore = document.querySelector("#computer-score");
+      // let head = document.querySelector("#head");
+      // let tail = document.querySelector("#tail");
+
+      // let person = 0;
+      // let computer = 0;
+
+      // head.addEventListener("click", () => play("Head"));
+      // tail.addEventListener("click", () => play("Tail"));
+
+      // function play(userChoice) {
+      //   let result = toss(); // 1 or 2
+
+      //   if (
+      //     (result === 1 && userChoice === "Head") ||
+      //     (result === 2 && userChoice === "Tail")
+      //   ) {
+      //     person++;
+      //     personScore.innerText = person;
+      //     console.log("User Win");
+      //   } else {
+      //     computer++;
+      //     computerScore.innerText = computer;
+      //     console.log("Computer Win");
+      //   }
+      // }
+
+      // function toss() {
+      //   return Math.floor(Math.random() * 2) + 1;
+      // }
+    </script>
+  </body>
+</html>

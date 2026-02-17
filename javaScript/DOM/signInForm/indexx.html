@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>kfokje</title>
+  </head>
+  <body>
+    <div class="heading"></div>
+
+    <button>Add</button>
+
+    <script>
+      let btn = document.querySelector("button");
+      let divsec = document.querySelector(".heading");
+
+      btn.addEventListener("click", adding);
+
+      let c = 0;
+      function adding() {
+        let h = document.createElement("h1");
+        h.innerText = "Ramesh" + ++c;
+
+        divsec.append(h);
+      }
+    </script>
+  </body>
+</html>

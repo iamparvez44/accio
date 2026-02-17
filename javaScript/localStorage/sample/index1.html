@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json</title>
+</head>
+<body>
+    <h1>heyy i am heading of html 1</h1>
+    <p>i am paragraph of html 1</p>
+</body>
+
+<script>
+    let h1 = document.querySelector("h1");
+    let para = document.querySelector("p");
+
+    let obj = {
+        v1: h1.innerText,
+        v2: para.innerText
+    }
+
+    let jsonData = JSON.stringify(obj);
+    localStorage.setItem("key", jsonData);
+
+</script>
+</html>

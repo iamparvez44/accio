@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignIn form</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input type="mail" placeholder="Enter your Email" id="mail" />
+
+      <input type="password" placeholder="Enter Your password" id="password" />
+
+      <button>Submit</button>
+    </form>
+
+    <table>
+      <tr>
+        <th>Email</th>
+        <th>Password</th>
+      </tr>
+    </table>
+
+    <script>
+      let mail = document.querySelector("#mail");
+      let pass = document.querySelector("#password");
+      let btn = document.querySelector("button");
+      let box = document.querySelector(".box");
+      let tableJs = document.querySelector("table");
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let newRow = document.createElement("tr");
+        let td1 = document.createElement("td");
+        let td2 = document.createElement("td");
+        td1.innerText = mail.value;
+        td2.innerText = pass.value;
+
+        newRow.append(td1, td2);
+        tableJs.append(newRow);
+        mail.value = "";
+        pass.value = "";
+      });
+    </script>
+  </body>
+</html>

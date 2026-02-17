@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Person1: <input type="text" value="Ishwar" />
+    <button class="roll" id="btn1">Roll the dice</button>
+    Value you Got: <span></span> <br />
+    <br />
+
+    Person2: <input type="text" value="Sagar" />
+    <button class="roll" id="btn2">Roll the dice</button>
+    Value you Got: <span></span> <br />
+    <br />
+
+    Person3: <input type="text" value="Ayush" />
+    <button class="roll" id="btn3">Roll the dice</button>
+    Value you Got: <span></span> <br />
+    <br />
+
+    Person4: <input type="text" value="Prempal" />
+    <button class="roll" id="btn4">Roll the dice</button>
+    Value you Got: <span></span> <br />
+    <br />
+
+    Person5: <input type="text" value="woLarki" />
+    <button class="roll" id="btn5">Roll the dice</button>
+    Value you Got: <span></span> <br />
+    <br />
+
+    <button id="endBtn">End Button</button>
+    <div id="result"></div>
+  </body>
+
+  <script>
+    // selection of all elements
+    let playerNameInput = document.querySelectorAll("input");
+    let rollBtn = document.querySelectorAll(".roll");
+    let score_span = document.querySelectorAll("span");
+    let endBtn = document.querySelector("#endBtn");
+    let resultDiv = document.querySelector("#result");
+
+    // disabled end btn
+    endBtn.disabled = true;
+
+    //roll btns addEventListner
+
+    for (let i = 0; i < rollBtn.length; i++) {
+      rollBtn[i].addEventListener("click", rollTheDice);
+    }
+    let btnCount = 0;
+
+    function rollTheDice(e) {
+      btnCount++;
+      if (btnCount == 5) {
+        endBtn.disabled = false;
+      }
+      let btnClicked = e.target;
+      btnClicked.disabled = true;
+      let btnClickedIndex = btnClicked.id.slice(3) - 1;
+      let randomValue = 1 + parseInt(Math.random() * 6);
+
+      score_span[btnClickedIndex].innerText = randomValue;
+    }
+
+    // now come to the part of end button and print the final result
+
+    endBtn.addEventListener("click", calculateResult);
+
+    function calculateResult() {
+      // finding the heightedst score
+
+      let highScore = 0;
+
+      for (t of score_span) {
+        let v = +t.innerText;
+        if (v > highScore) {
+          highScore = v;
+        }
+      }
+
+      // console.log(highScore);
+
+      let highScoresNames = [];
+      for(let i=0; i<score_span.length; i++){
+
+        if(highScore==score_span[i].innerText){
+          highScoresNames.push(playerNameInput[i].value);
+        }
+
+      }
+      resultDiv.innerText = `Winner are ${highScoresNames_.join(" , ")}`
+    }
+  </script>
+</html>
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>basic</title>
+    <style>
+      .new {
+        background-color: tomato;
+        text-align: center;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ishwar</h1>
+    <button>change</button>
+
+    <script>
+      let btn = document.querySelector("button");
+      let h1 = document.querySelector("h1");
+
+      btn.addEventListener("click", () => {
+        h1.innerText = "Parvez";
+        h1.className = "new";
+      });
+    </script>
+  </body>
+</html>
