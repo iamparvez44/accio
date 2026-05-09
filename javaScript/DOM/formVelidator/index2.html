@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form velidator</title>
+    <style>
+      form {
+        display: grid;
+      }
+      .form-box {
+        width: 300px;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-box">
+      <form>
+        <label for="user-name">User Name:</label>
+        <input type="text" id="user-name" placeholder="Enter User Name" />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter Your Mail" />
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter Your password"
+        />
+
+        <label for="cPass">Confirm Password</label>
+        <input type="password" id="cPass" placeholder="Confirm Password" />
+
+        <button id="btn">submit</button>
+      </form>
+    </div>
+
+    <script>
+      let input = document.querySelectorAll("input");
+
+      for (let t of input) {
+        t.addEventListener("input", vailidat);
+      }
+
+      function vailidat(e) {
+        let element = e.target;
+
+        let value = element.value;
+        element.style.outline = "none";
+        let id = element.id;
+
+        if (id == "user-name") {
+          element.style.border =
+            value.length < 6 ? "2px solid red" : "2px solid green";
+        } else if (id == "email") {
+          element.style.border = element.value.includes("@")
+            ? "2px solid green"
+            : "2px solid red";
+        } else if (id == "password") {
+          element.style.border =
+            element.value.length < 8 ? "2px solid red" : "2px solid green";
+        } else if (id == "cPass") {
+          element.style.border =
+            input[2].value === input[3].value
+              ? "2px solid green"
+              : "2px solid red";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latter amd words</title>
+  </head>
+  <body>
+    <input type="text" placeholder="type somthing..." />
+    <h3>Latter With Space: <span id="a">0</span></h3>
+    <h3>Latter With Out Space <span id="b">0</span></h3>
+    <h3>Total Words <span id="c">0</span></h3>
+
+    <script>
+      let input = document.querySelector("input");
+      let a = document.querySelector("#a");
+      let b = document.querySelector("#b");
+      let c = document.querySelector("#c");
+
+      input.addEventListener("input", (e) => {
+        let latterWithSpace = e.target.value.length;
+        a.innerText = latterWithSpace;
+      });
+
+      input.addEventListener("change", (e) => {
+        let element = e.target;
+        let value = element.value;
+
+        let latterWithSpace = value.length;
+
+        let space = 0;
+        for (let i = 0; i < value.length; i++) {
+          if (value[i] == " ") {
+            space++;
+          }
+        }
+
+        let latterWithOutSpace = latterWithSpace - space;
+        b.innerText = latterWithOutSpace;
+
+        // here we will find words
+        let words = 0;
+        let inWord = false;
+
+        for (let i = 0; i < value.length; i++) {
+          if (value[i] !== " " && inWord === false) {
+            words++;
+            inWord = true;
+          }
+
+          if (value[i] === " ") {
+            inWord = false;
+          }
+        }
+
+        c.innerText = words;
+      });
+    </script>
+  </body>
+</html>

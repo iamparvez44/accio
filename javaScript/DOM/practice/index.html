@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>0</h1>
+
+    <button id="a">a</button>
+    <button id="b">b</button>
+    <button id="c">c</button>
+    <button id="d">d</button>
+    <button id="e">e</button>
+    <button id="f">f</button>
+    <button id="g">g</button>
+
+    <script>
+      let h1 = document.querySelector("h1");
+
+      let btns = document.querySelectorAll("button");
+
+      let set = new Set();
+
+      for (let t of btns) {
+        t.addEventListener("click", () => {
+          if (set.has(t.id)) return;
+
+          let val = +h1.innerText;
+          set.add(t.id);
+
+          h1.innerText = val + 1;
+        });
+      }
+    </script>
+  </body>
+</html>

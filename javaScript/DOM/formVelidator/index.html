@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form velidator</title>
+    <style></style>
+  </head>
+  <body>
+    <form class="signup">
+      <label for="user-name">User Name</label>
+      <input type="text" id="user-name" placeholder="Enter user name" />
+      <br />
+      <br />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your mail" />
+      <br />
+      <br />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" />
+      <br />
+      <br />
+
+      <label for="Cpassword">Confirm Password</label>
+      <input
+        type="password"
+        id="Cpassword"
+        placeholder="confirm your password"
+      />
+      <br />
+      <br />
+
+      <button>submitt</button>
+    </form>
+
+    <script>
+      //   let input = document.querySelectorAll("input");
+
+      //   // this is for userName validation onlyy
+
+      //   input[0].addEventListener("input", (e) => {
+      //     e.preventDefault();
+
+      //     let value = e.target.value;
+      //     input[0].style.outline = "none";
+
+      //     if (value.length < 6) {
+      //       input[0].style.border = "2px solid red";
+      //     } else {
+      //       input[0].style.border = "2px solid green";
+      //     }
+      //   });
+
+      //   // this is password confirmation
+
+      //   input[1].addEventListener("input", () => {
+      //     input[1].style.outline = "none";
+
+      //     let value = input[1].value;
+      //     const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+      //     if (emailRegex.test(value)) {
+      //       input[1].style.border = "2px solid green";
+      //     } else {
+      //       input[1].style.border = "2px solid red";
+      //     }
+      //   });
+
+      //   // for password validation
+
+      //   input[2].addEventListener("input", () => {
+      //     input[2].style.outline = "none";
+      //     let value = input[2].value;
+
+      //     const passwordRegex =
+      //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+      //     if (passwordRegex.test(value)) {
+      //       input[2].style.border = "2px solid green";
+      //     } else {
+      //       input[2].style.border = "2px solid red";
+      //     }
+      //   });
+
+      let input = document.querySelectorAll("input");
+      for (let t of input) {
+        t.addEventListener("input", vailidat);
+        t.style.outline = "none";
+      }
+
+      function vailidat(e) {
+        let element = e.target;
+        let value = element.value;
+        let id = element.id;
+
+        if (id == "user-name") {
+          element.style.border =
+            value.length < 6 ? "2px solid red" : "2px solid green";
+        }
+        else if(id=="email"){
+            element.style.border = value.includes("@") ? "2px solid green" : "2px solid red";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,278 @@
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book info api reques</title>
+  </head>
+  <body>
+    <form>
+      <label for="userName">User Name:</label>
+      <input type="text" id="userName" name="userName" />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" />
+
+      <button type="submit">Login</button>
+
+      <script>
+        let form = document.querySelector("form");
+        let userNameBox = document.querySelector("#userName");
+        let passwordBox = document.querySelector("#password");
+        let body = document.querySelector("body");
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          let userNameVal = userNameBox.value;
+          let passwordVal = passwordBox.value;
+          console.log(userNameVal, passwordVal);
+
+          fetch("https://instagram-express-app.vercel.app/login", {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userName: userNameVal,
+              password: passwordVal,
+            }),
+          })
+            .then((res) => res.json())
+            .then((info) => {
+            //   console.log(info);
+
+              if (info.success) {
+                let span = document.createElement("span");
+                span.innerText = "";
+                span.innerText = "loggedIn successfull.";
+                span.style.color = "green";
+                form.append(span);
+
+                // saving token to local storage
+
+                // localStorage.setItem("token", info.token);
+
+
+                fetch("https://instagram-express-app.vercel.app/user/history", {
+
+                    method: "GET",
+
+                    headers: {
+                        token: info.token
+                    }
+
+                })
+                .then(res=> res.json())
+                .then((p)=>{
+                    console.log(p.data);
+                    let div = document.createElement("div");
+                    body.append(div);
+                    let dataa = p.data;
+
+                    for(let i of dataa){
+                        console.log(i.name);
+                        let list = document.createElement("li");
+                        list.innerText = i.name;
+                        div.append(list);
+                    }
+
+
+                })
+                .catch(errr=> console.log(errr));
+
+              } else {
+                let span = document.createElement("span");
+                span.innerText = "";
+                span.innerText = "failed to loggedIn.";
+                span.style.color = "red";
+                form.append(span);
+              }
+            })
+            .catch((err) => console.log("error here", err));
+        });
+      </script>
+    </form>
+  </body>
+</html> -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(120deg, #4facfe, #00f2fe);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        width: 320px;
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        outline: none;
+      }
+
+      input:focus {
+        border-color: #4facfe;
+      }
+
+      button {
+        width: 100%;
+        margin-top: 20px;
+        padding: 12px;
+        border: none;
+        background: #4facfe;
+        color: white;
+        font-size: 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #007bff;
+      }
+
+      .msg {
+        display: block;
+        margin-top: 15px;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .history {
+        margin-top: 20px;
+        padding: 10px;
+        background: #f5f7fa;
+        border-radius: 8px;
+      }
+
+      .history li {
+        padding: 6px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .history li:last-child {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Login 🔐</h2>
+
+      <form>
+        <label>User Name</label>
+        <input type="text" id="userName" required />
+
+        <label>Password</label>
+        <input type="password" id="password" required />
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <script>
+      let form = document.querySelector("form");
+      let userNameBox = document.querySelector("#userName");
+      let passwordBox = document.querySelector("#password");
+      let container = document.querySelector(".container");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let userNameVal = userNameBox.value;
+        let passwordVal = passwordBox.value;
+
+        fetch("https://instagram-express-app.vercel.app/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userName: userNameVal,
+            password: passwordVal,
+          }),
+        })
+          .then((res) => res.json())
+          .then((info) => {
+            let oldMsg = document.querySelector(".msg");
+            if (oldMsg) oldMsg.remove();
+
+            if (info.success) {
+              let span = document.createElement("span");
+              span.classList.add("msg");
+              span.innerText = "✅ Login successful";
+              span.style.color = "green";
+              form.append(span);
+
+              fetch("https://instagram-express-app.vercel.app/user/history", {
+                method: "GET",
+                headers: {
+                  token: info.token,
+                },
+              })
+                .then((res) => res.json())
+                .then((p) => {
+                  let oldDiv = document.querySelector(".history");
+                  if (oldDiv) oldDiv.remove();
+
+                  let div = document.createElement("div");
+                  div.classList.add("history");
+
+                  let title = document.createElement("h4");
+                  title.innerText = "📜 History";
+                  div.append(title);
+
+                  for (let i of p.data) {
+                    let li = document.createElement("li");
+                    li.innerText = i.name;
+                    div.append(li);
+                  }
+
+                  container.append(div);
+                });
+            } else {
+              let span = document.createElement("span");
+              span.classList.add("msg");
+              span.innerText = "❌ Login failed";
+              span.style.color = "red";
+              form.append(span);
+            }
+          })
+          .catch((err) => console.log(err));
+      });
+    </script>
+  </body>
+</html>

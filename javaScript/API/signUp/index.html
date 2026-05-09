@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>singUp form</title>
+  </head>
+  <body>
+    <form autocomplete="off">
+      <label for="name">Name: </label>
+      <input type="text" id="name" placeholder="Enter Your Name" />
+      <br />
+
+      <label for="email">Email: </label>
+      <input type="email" id="email" placeholder="Enter your Email ID" />
+      <br />
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" />
+      <br />
+
+      <button id="btn-1">Submit</button>
+    </form>
+
+    <script>
+      let inp = document.querySelectorAll("input");
+      let btn1 = document.querySelector("#btn-1");
+      let form = document.querySelector("form");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let name = inp[0].value;
+        let email = inp[1].value;
+        let password = inp[2].value;
+
+        fetch("https://instagram-express-app.vercel.app/api/auth/signup", {
+          method: "POST",
+
+          headers: {
+            "content-type": "application/json",
+          },
+
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+          }),
+        })
+        .then(res=> res.json())
+        .then((info)=>{
+            if(info.success==true){
+               alert("sign up sucessfull");
+
+               localStorage.setItem("key", JSON.stringify(info.data.token))
+
+            }
+            else{
+                alert("User Already exist");
+            }
+        })
+        .catch(err=> console.log("i am error"));
+      });
+    </script>
+  </body>
+</html>

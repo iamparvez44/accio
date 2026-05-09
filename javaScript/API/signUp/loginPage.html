@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mylogin page</title>
+  </head>
+  <body>
+    <!-- create a login form with email and password field and a submit button -->
+
+    <form>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Login</button>
+    </form>
+
+    <script>
+      let form = document.querySelector("form");
+      let email = document.querySelector("#email");
+      let password = document.querySelector("#password");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let emailValue = email.value;
+        let passVal = password.value;
+        // console.log(emailValue, passVal);
+
+        fetch("https://instagram-express-app.vercel.app/api/auth/login", {
+          method: "POSt",
+
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            email: emailValue,
+            password: passVal,
+          }),
+        })
+          .then((res) => res.json())
+          .then((info) => {
+            if (info.success == true) {
+              let msg = document.createElement("p");
+              msg.innerText = info.message;
+              msg.style.color = "green";
+              form.append(msg);
+            } else {
+              let msg = document.createElement("p");
+              msg.innerText = "user donest exist";
+              msg.style.color = "red";
+              form.append(msg);
+            }
+          })
+          .catch((err) => console.log("i am errror"));
+      });
+
+
+      // msg logic
+      
+      let output = document.querySelector("#msg");
+      let token = localStorage.getItem("key");
+      let t = JSON.parse(token);
+      fetch("https://instagram-express-app.vercel.app/api/auth/zuku", {
+        method: "GET",
+
+        headers: {
+          Authorization: `Bearer ${t}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((info) => console.log(info.data.message))
+        .catch((err) => console.log("i am error"));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debouncing</title>
+  </head>
+  <body>
+    <form>
+      <input type="email" name="email" id="email_box" />
+      <button>submit</button>
+    </form>
+
+    <div></div>
+
+    <script>
+      let form = document.querySelector("form");
+      let email_box = document.querySelector("email_box");
+      let btn = document.querySelector("button");
+      let div = document.querySelector("div");
+
+      form.addEventListener("submit", display);
+
+      function display(e) {
+        e.preventDefault();
+
+        let para = document.createElement("p");
+        para.innerText = email_box.value;
+        div.append(para);
+      }
+    </script>
+  </body>
+</html>

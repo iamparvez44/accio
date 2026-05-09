@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>creating table using DOM</title>
+  </head>
+  <body>
+    <form>
+      <input type="email" name="email" id="email" />
+      <input type="password" id="password" />
+      <button>submit</button>
+    </form>
+
+    <table>
+      <tr>
+        <th>EMAIL</th>
+        <th>PASSWORD</th>
+      </tr>
+    </table>
+
+    <script>
+      let email = document.querySelector("#email");
+      let password = document.querySelector("#password");
+      let btn = document.querySelector("button");
+      let jsTable = document.querySelector("table");
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        let newRow = document.createElement("tr");
+        let td1 = document.createElement("td");
+        let td2 = document.createElement("td");
+
+        td1.innerText = email.value;
+        td2.innerText = password.value;
+
+        newRow.append(td1, td2);
+
+        jsTable.append(newRow);
+
+        email.value = "";
+        password.value = "";
+      });
+    </script>
+  </body>
+</html>
