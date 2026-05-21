@@ -1,12 +1,14 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import ColorContext from './Context/MyContext.js'
+import { Provider } from 'react-redux'
+import { store } from '../redux/store.js'
 
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
-    
-    <App />
-
-
+  
+   <Provider store={store}>
+     <App />
+   </Provider>
+ 
 )
