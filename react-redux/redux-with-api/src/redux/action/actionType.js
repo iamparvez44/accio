@@ -1,0 +1,6 @@
+
+export const LODING_START = "LODING_START";
+export const PRODUCT_SUCCESS = "PRODUCT_SUCCESS";
+export const PRODUCT_FAIL = "PRODUCT_FAIL";
+
+
