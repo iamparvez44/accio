@@ -1,15 +1,9 @@
-// simple node js server
+require("./test.js");
+let {sum, parvez} = require("./test.js");
 
-const http = require('http');
 
-const server = http.createServer((req, res)=>{
+console.log(" hey am from app file");
+console.log(parvez);
 
-  console.log(req);
+sum(10,5);
 
-});
-
-const PORT = 3001
-
-server.listen(PORT, ()=>{
-  console.log(`server listen on this port ${PORT}`)
-});
